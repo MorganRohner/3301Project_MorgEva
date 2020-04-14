@@ -81,8 +81,11 @@ function Load_Data_Callback(hObject, eventdata, handles)
 [filename, pathname] = uigetfile('*.*');
 info = VideoReader([pathname, filesep, filename]);
 
+n = info.NumFrames 
+
 VIDEO = readFrame(info);
 imagesc(VIDEO);
+
 
 % --- Executes on button press in Select_ROI.
 function Select_ROI_Callback(hObject, eventdata, handles)
@@ -90,19 +93,40 @@ function Select_ROI_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-a = getrect
-xmax = a(:,1) + a(:,3)
-xmin = a(:,1)
-ymin = a(:,2)
-ymax = a(:,2) + a(:,4)
+a = getrect;
+xmax = a(:,1) + a(:,3);
+xmin = a(:,1);
+ymin = a(:,2);
+ymax = a(:,2) + a(:,4);
 
 avea = mean((xmax - xmin)*(ymax-ymin))
+% gives average of the frame picked 
+% how do we get the average of the heart in each frame seperate from the
+% new frame 
 
+% changes pixels 
 
 % --- Executes on button press in Calculate_HR.
 function Calculate_HR_Callback(hObject, eventdata, handles)
 % hObject    handle to Calculate_HR (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+%% 
+
+% while
+%     addframe(info) = f
+%         if f == 1 
+%           mean(frame) = b 
+%         end
+%     if f == 0
+%     end
+% end
+
+% plot(b);
+% c = findpeaks(b);
+% heartbeats = c*video seconds
+% how to find video seconds? find duration/frames = frame rate
 
 
